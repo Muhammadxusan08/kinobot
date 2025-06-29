@@ -10,7 +10,7 @@ const movieData = {
   "123": {
     title: "Avengers: Endgame",
     description: "Super qahramonlar tarafidan dunyoni qutqarish uchun so‘nggi jang.",
-    videoPath: "./video/video1.MP4" // 🎥 Mahalliy video
+    videoPath: "./video/video1.mp4" // 🎥 Mahalliy video
   },
   "456": {
     title: "Inception",
