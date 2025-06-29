@@ -1,21 +1,21 @@
 const { Telegraf, Markup } = require('telegraf');
+const fs = require('fs');
 
 // 🔐 BOT TOKEN va KANAL USERNAME
 const bot = new Telegraf('8000226948:AAFHaaJMazrMgdDoQbXZukWGHUntYfFrUac');
-const CHANNEL_USERNAME = '@Fastmoneyuz_tg'; // '@' belgisi qo'shildi
+const CHANNEL_USERNAME = '@Fastmoneyuz_tg';
 
 // 🎬 Kodlar orqali yuboriladigan kinolar
 const movieData = {
   "123": {
     title: "Avengers: Endgame",
     description: "Super qahramonlar tarafidan dunyoni qutqarish uchun so‘nggi jang.",
-    videoPath: "./video/IMG_4733.mp4",
-    link: "https://t.me/Fastmoneyuz_tg/123"
+    videoPath: "./video/IMG_4733.mp4" // 🎥 Mahalliy video
   },
   "456": {
     title: "Inception",
     description: "Orzular ichida orzular sarguzashti.",
-    link: "https://t.me/Fastmoneyuz_tg/456"
+    link: "https://t.me/Fastmoneyuz_tg/456" // 🔗 Link orqali
   }
 };
 
@@ -77,10 +77,21 @@ bot.on('text', async (ctx) => {
   // Kino yuborish
   const movie = movieData[code];
   if (movie) {
-    return ctx.replyWithHTML(
-      `🎬 <b>${movie.title}</b>\n\n📝 ${movie.description}\n\n▶️ <a href="${movie.link}">Ko‘rish</a>`,
-      { disable_web_page_preview: true }
+    await ctx.replyWithHTML(
+      `🎬 <b>${movie.title}</b>\n\n📝 ${movie.description}`
     );
+
+    if (movie.videoPath && fs.existsSync(movie.videoPath)) {
+      return ctx.replyWithVideo({ source: movie.videoPath });
+    } else if (movie.link) {
+      return ctx.replyWithHTML(
+        `▶️ <a href="${movie.link}">Ko‘rish</a>`,
+        { disable_web_page_preview: true }
+      );
+    } else {
+      return ctx.reply('❗ Video yo‘q yoki link mavjud emas.');
+    }
+
   } else {
     return ctx.reply('❌ Bunday kod bo‘yicha kino topilmadi.');
   }
