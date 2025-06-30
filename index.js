@@ -8,14 +8,14 @@ const CHANNEL_USERNAME = '@Fastmoneyuz_tg';
 // 🎬 Kodlar orqali yuboriladigan kinolar
 const movieData = {
   "123": {
-    title: "Avengers: Endgame",
+    title: "Avengers: Endgame cod: 123",
     description: "Super qahramonlar tarafidan dunyoni qutqarish uchun so‘nggi jang.",
-    videoPath: "./video/video1.MP4" // 🎥 Mahalliy vide
+    videoPath: "./video/kino123.mp4" // 🎥 Mahalliy vide
   },
-  "456": {
-    title: "Inception",
+  "124": {
+    title: "Inception cod: 124",
     description: "Orzular ichida orzular sarguzashti.",
-    link: "https://t.me/Fastmoneyuz_tg/456" // 🔗 Link orqali
+     videoPath: "./video/video1.MP4" // 🎥 Mahalliy vide
   }
 };
 
